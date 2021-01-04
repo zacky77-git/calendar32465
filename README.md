@@ -10,8 +10,12 @@
 
 ### Association
 
-- has_many :items
-- has_many :orders
+- has_many :plans
+- has_many :diaries
+- has_many :tasks
+- has_many :monthly_targets
+- has_many :weekly_targets
+- has_many :daily_targets
 
 
 
@@ -26,39 +30,74 @@
 | user           | references | null: false, foreign_key: true |
 
 ### Association
-
 - belongs_to :user
-- has_one :order
 
-## address テーブル
+
+## diaries テーブル
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| post_code | string     | null: false,                   |
-| area_id   | integer    | null: false                    |
-| district  | string     | null: false,                   |
-| area_code | string    | null: false,                   |
-| building  | string     |                                |
-| phone_number   | string    | null: false,               |
-| order     | references | null: false, foreign_key: true |
+| title | string     | null: false,                   |
+| content   |text   | null: false                    |
+| start_time  | datetime     | null: false,                   |
+| user     | references | null: false, foreign_key: true |
+| date     | date | null: false, unique: true |
 
 ### Association
 
+- belongs_to :user
 
-- belongs_to :order
 
 
-## orders テーブル
+## tasks テーブル
 
 | Orders    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| user      | references | null: false, foreign_key: true |
-| item      | references | null: false, foreign_key: true |
+| title      | string| null: false |
+| description     | text | null: false |
+| target_on      | datetime  | null: false |
+| completed_at     | datetime  | null: false |
+| completed     | boolean | null: false |
+| user     | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to :user
-- has_one :address
-- belongs_to :item
+
+## monthly_targets テーブル
+
+| Orders    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| content      | string| null: false |
+| user     | references | null: false, foreign_key: true |
+| date     | date | null: false |
+
+### Association
+
+- belongs_to :user
+
+## weekly_targets テーブル
+
+| Orders    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| content      | string| null: false |
+| user     | references | null: false, foreign_key: true |
+| date     | date | null: false |
+
+### Association
+
+- belongs_to :user
+
+## daily_targets テーブル
+
+| Orders    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| content      | string| null: false |
+| user     | references | null: false, foreign_key: true |
+| date     | date | null: false |
+
+### Association
+
+- belongs_to :user
 
